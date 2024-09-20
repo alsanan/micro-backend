@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso denegado</title>
+    <link rel="stylesheet" href="https://alzira.alapont.com/labs/componentesweb/weblin/css/metro.css">
+</head>
+<body>
+
+  <article>
+  <h1 title="[<%=Object.keys(it)%>]">Acceso denegado</h1>
+  <hr>
+  Revisa las credenciales y que tengas permiso de acceso al servidor...
+</script>

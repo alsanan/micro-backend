@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Server error</title>
+    <link rel="stylesheet" href="https://alzira.alapont.com/labs/componentesweb/weblin/css/metro.css">
+</head>
+<body>
+
+  <article>
+  <h3 title="[{{Object.keys(it)}}]">Eta file rendered</h3>
+{{JSON.stringify(it.params)}}
+<h5>
+  Nota: Uso la sintaxis {&#123; y }} como la de Vue. Al encontrarse esas llaves, asume que su contenido es una expresión y devuelve su resultado. Además se habilita una segunda sintaxis que NO devuelve resultado pero sí ejecuta el JS de su interior, con tres llaves en apertura: {&#123;{ /*código válido JS que será ejecutado directamente*/ }}
+</h5>
+
+<hr>
+
+<pre>Esto es un archivo .eta con tags de tipo: &#123;{ /* codigo node */ }} como este:</pre> <hr>
+&#123;{JSON.stringify(this) }} :
+<hr>
+<code>{{ JSON.stringify(this) }}</code>
+<hr>
+{{ JSON.stringify(this).replace(/}/g,'}<br>').replace(/,/g,',<br>') }}
+<hr>
+
+
+<script>
+
+function displayJSON(data) {
+  if (data instanceof Array) {
+    const list = document.createElement('ul');
+    data.forEach(item => {
+      const listItem = document.createElement('li');
+      displayJSON(item, listItem);
+      list.appendChild(listItem);
+    });
+    return (list);
+  } else if (typeof data === 'object') {
+    const list = document.createElement('ul');
+    Object.keys(data).forEach(key => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<b>${key}:</b>`;
+      let resa= displayJSON(data[key]);
+      if (typeof resa=='string') resa= document.createTextNode(resa)
+      try { 
+        listItem.appendChild(resa);
+      } catch {}
+      list.appendChild(listItem);
+    });
+    return(list);
+  } else {
+    if (typeof data == 'boolean') return data?'TRUE':'FALSE';
+    return data;
+  }
+}
+
+  const jsonContainer = document.querySelector('code');
+  const data= JSON.parse(jsonContainer.innerText);
+  jsonContainer.innerText='';
+  jsonContainer.appendChild(displayJSON(data))
+
+</script>
+<style>
+
+#json-container {
+  font-family: monospace; /* Use a monospace font for better code readability */
+  white-space: pre;       /* Preserve whitespace and line breaks */
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+#json-container li {
+  margin-bottom: 5px;
+}
+
+#json-container li b {
+  font-weight: bold;
+  color: #333;
+}
+
+</style>

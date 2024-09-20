@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Micro Server</title>
+    <!--link rel="stylesheet" href="/cdn/pico.classless.pink.min.css"-->
+    <link rel="stylesheet" href="cdn/metro.css">
+    <link rel="stylesheet" href="cdn/highlight/monokai-sublime.min.css">
+    <style>
+      [error] { 
+        outline:2px dashed red; 
+        font-weight:800; 
+        font-size:1.5rem; 
+        width:fit-content;
+        padding-inline: 2rem;
+      }
+      [stack] { 
+        line-height: 1.5;
+        padding: 1rem 2rem;
+        color:white;
+      }
+      [suggestion] pre { white-space: pre-wrap; padding:1rem; color:white; }
+      [inline] { display:inline; }
+      summary { max-width: 8rem; }
+      [role=group], [role=search] {
+        display: inline-flex;
+        position: relative;
+        width: 100%;
+        margin-bottom: var(--pico-spacing);
+        border-radius: var(--pico-border-radius);
+        box-shadow: var(--pico-group-box-shadow, 0 0 0 transparent);
+        vertical-align: middle;
+        transition: box-shadow var(--pico-transition);
+        gap: 4px;
+        overflow-x: hidden;
+      }
+      [role=group] input:not([type=checkbox],[type=radio]), [role=group] select, [role=group]>*, [role=search] input:not([type=checkbox],[type=radio]), [role=search] select, [role=search]>* {
+        position: relative;
+        flex: 1 1 auto;
+        margin-bottom: 0;
+      }
+    </style>
+  </head>
+<body>
+  <h1>webapps development micro server</h1>
+  <button onclick="fetch('/console.clear')" style="border-radius:2rem;background:black;">🧹</button>
+  <ul>
+    <li><a href="/modulo/123">Módulo MJS</a></li>
+    <li><a href="/moduloconerror">Módulo MJS que genera error</a></li>
+    <li><a href="/dbtest">Módulo SQL</a></li>
+    <li><a href="/testeta/123">Template ETA</a></li>
+    <li><a href="/testetasql">Template ETA SQL</a></li>
+    <li><a href="/404notfound">404 not found</a> </li>
+    <li>automatics .mjs: <a href="/book/?param=test">get</a>  <form inline method="POST" action="/book">do<input type="hidden" name="hiddenparam" value="value"><button>POST</button></form> <span>do<button onclick="console.clear();fetch('/book',{method:'DELETE',body:'{param:1234}'}).then(r=>r.text()).then(r=>document.querySelector('.dlg').innerHTML=r,document.querySelector('.dlg').showModal(),setTimeout(()=>document.querySelector('.dlg').close(),3000))">DELETE</button></span>
+    <li><a href="/proxy?https://github.com">proxy</a>
+    <li>Autenticació sesions 
+      <form action="session/login" method="POST" role="group">
+        <input name="user"> <input name="password" value="clau">
+        <button style="margin-top:1.5rem">login</button>
+      </form>
+      <a href="/session/logged">Logged?</a>
+      <button onclick="location.href='/session/logout'">Logout</button>
+    <hr>
+    <h3>Pending</h3>
+    <li>cache de moduls <span style="color:red"><- diu 404</span> amb reload
+    <li>caché d'arxius existents. pensar com pel tema de no ocultar existents. Potser triant primer de cache i després ja veient si hi havia arxiu nou i actualitzant cache... 👌
+    <li>Ante algunos errores, se queda en modo "Failed running index.mjs" sin servir más peticiones.</li>
+    <li>sql/jsonquery? files
+    <li>sqlite proxy <a href="https://rqlite.io/docs/api/api/">rqlite</a>?
+    <li>sqlite server. <ol><li>ORM. </li><li>file sqlite.mjs directamente accesible por path.</li><li>proxy</li></ol>
+    <li>file access / NAS
+    <li>subscripcio
+
+      idea doble proceso en back end : usar json como fuente de datos y aplicar template posterior
+       para convertir a html, quizá indicando .html como indicador del formato esperado. 
+       <br>al final se trata de identificar las fases de proceso aplicadas : 
+       1. sql, file, . 2. js transformativo opcional. 3. formato de salida : html, json, static.
+  </ul>
+  <dialog class="dlg"></dialog>
+
+
+
+
+
+  <!------- END. SQUARES: --------------------------------------------->
+
+	<div class="container">
+		<div class="square" style="width:75px; height:75px; left:7%;"></div>
+		<div class="square" style="width:65px; height:65px; left:15%; animation-delay:4s;"></div>
+		<div class="square" style="width:82px; height:82px; left:45%; animation-delay:8s;"></div>
+		<div class="square" style="width:70px; height:70px; left:55%; animation-delay:2s;"></div>
+		<div class="square" style="width:60px; height:60px; left:27%; animation-delay:6s;"></div>
+		<div class="square" style="width:55px; height:55px; left:60%; animation-delay:4s;"></div>
+		<div class="square" style="width:90px; height:90px; left:85%; animation-delay:9s;"></div>
+		<div class="square" style="width:45px; height:45px; left:10%; animation-delay:7s;"></div>
+		<div class="square" style="width:55px; height:55px; left:60%; animation-delay:7s;"></div>
+	</div>
+	<style>
+        .container { position: absolute; inset: 0; overflow: hidden; pointer-events:none; }
+        .square{ position:absolute; bottom:-100px; background-color:#171b23; animation:boxes 10s infinite ease-in-out; z-index:-1; }
+        @keyframes boxes{ 0%{ bottom:-100px; opacity:.5;} 100%{ bottom:100%; transform:rotate(180deg); opacity:0;} }
+	</style>    
+</body>
+</html>

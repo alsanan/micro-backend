@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Session check</title>
+    <link rel="stylesheet" href="https://alzira.alapont.com/labs/componentesweb/weblin/css/metro.css">
+</head>
+<body>
+<article>
+
+<h1 title="<%=JSON.stringify(it.session)%>">{{it.session?.id?'LOGGED!':'Unlogged.'}}</h1>
+
+User: {{it.session.user?.name}}
+<br/>
+Session ID: {{it.session.id}}
+
+
+<hr>{{JSON.stringify(it.session)=='{}'?'NOT LOGGED!':'<a href="/session/logout" role="button" style="--light-bd-muted:#f88">logout</a>'}}
+<hr><a href="/" role="button">volver</a>
+
+<hr><small>{{JSON.stringify(it)}}</small>

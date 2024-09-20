@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL</title>
+    <link rel="stylesheet" href="cdn/metro.css">
+</head>
+<body>
+
+{{{
+    //const { params } = req;
+    let data;
+    try {
+        const result = await it.mssql.query('SELECT o_cod,o_nom FROM fope where o_fecbaj is null');
+        data = result.recordset;
+    } catch (err) {
+        console.error(err);
+        //res.code(500).send('Database query failed');
+    } 
+
+}}
+
+<article>
+  <ul>{{{ for (var ope of data) { }}
+    <li>{{ ope.o_nom }}: {{ ope.o_cod }}</li>
+    {{{ } }}
+  </ul>
+<code>&#123;{JSON.stringify(data)}}</code>

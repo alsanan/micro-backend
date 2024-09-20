@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>🚧 Not found</title>
+    <link rel="stylesheet" href="cdn/metro.css">
+    <style>
+      [error] { 
+        outline:2px dashed red; 
+        font-weight:800; 
+        font-size:1.5rem; 
+        width:fit-content;
+        padding-inline: 2rem;
+        margin-inline:auto;
+      }
+      summary { max-width: 8rem; }
+      body { padding:2rem; }
+      footer {
+        inset: auto 0 0 0;
+        position: fixed;
+        background: var(--pico-mark-background-color);
+        min-width: 100vw !important;
+        text-align: center;
+        padding-block: 0.3rem !important;
+      }
+    </style>
+  </head>
+<body>
+
+<article>
+
+<h1 title="<%=JSON.stringify(it)%>">🚧 No se ha encontrado la URL... <br><br> <blockquote><%=it.url%></h1>
+
+<br>
+<hr>
+
+<details open><summary>🔗 url</summary><div url></div></details>
+
+<hr>
+
+<footer>
+  &copy; alapont 2024
+  <!-- based on https://leo-xee.github.io/static/b492073f3a6f84abfab45b147db056f3/c1b63/next-window-01.png -->
+</footer>
+<script>
+document.querySelector('[url]').innerText= location.href;
+</script>

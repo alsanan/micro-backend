@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "micro": "^10.0.1",
+    "micro-body": "^0.1.2",
+    "micro-cookie-session": "^2.0.0-beta.1"
+  },
+  "dependencies": {
+    "eta": "^3.5.0",
+    "mssql": "^11.0.1",
+    "stack-trace": "^1.0.0-pre2"
+  }
+}
